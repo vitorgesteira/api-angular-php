@@ -1,0 +1,10 @@
+CREATE DATABASE api;
+USE api;
+
+CREATE TABLE cursos(
+    idCurso INT AUTO_INCREMENT PRIMARY KEY,
+    nomeCurso VARCHAR(30),
+    valorCurso DECIMAL(10,2)
+);
+
+INSERT INTO cursos VALUES (null, "Angular", 850);
