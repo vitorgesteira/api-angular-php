@@ -23,6 +23,7 @@ $curso = [
     'valorCurso' => $valorCurso
 ];
 
-json_encode(['curso'=>$curso]);
+$json = json_encode(['cursos'=>$curso]);
+echo $json;
 
 ?>

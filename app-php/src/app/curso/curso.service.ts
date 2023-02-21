@@ -23,9 +23,19 @@ export class CursoService {
     return this.http.get(this.url+"listar").pipe(
       map((res: any)=>{
         this.vetor = res['cursos'];
-        console.log(res.cursos)
+        //console.log(res.cursos)
         return this.vetor;
       })
     )
-    }
+  }
+
+  //Cadastrar curso
+  cadastrarCurso(c:Curso): Observable<Curso[]>{
+    return this.http.post(this.url+"cadastrar", {cursos:c}).pipe(
+      (map((res:any)=>{
+        this.vetor.push(res['cursos']);
+        return this.vetor;
+      }))
+    )
+  }
 }
