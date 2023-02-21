@@ -1,0 +1,15 @@
+{
+    "name": "vitor/php",
+    "autoload": {
+        "psr-4": {
+            "Vitor\\Php\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Vitor Gesteira",
+            "email": "dev.vitorgesteira@gmail.com"
+        }
+    ],
+    "require": {}
+}

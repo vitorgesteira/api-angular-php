@@ -25,9 +25,11 @@ while($linha = mysqli_fetch_assoc($executar)){
 }
 
 //JSON
-json_encode(['cursos'=>$cursos]);
+$listaCursos = json_encode(['cursos'=>$cursos]);
 
 //teste
 //var_dump($cursos);
+echo $listaCursos;
+
 
 ?>
