@@ -11,7 +11,7 @@ import { CursoService } from './curso.service';
 export class CursoComponent implements OnInit {
 
   //URL base
-  url = "http://localhost/api/php/";
+  url = "http://localhost/api-angular-php/php/";
 
   //Vetor de cursos
   vetor:Curso[] = [];
@@ -50,15 +50,28 @@ export class CursoComponent implements OnInit {
   selecao(){
     this.curso_servico.obterCursos().subscribe(
       (res)=>{
-        this.vetor = res;
+        this.vetor = res;        
       }
       
     )
   }
 
   //Alterar
-  alterar():void{
-    alert("Alterar");
+  alterar(c: Curso){
+    this.curso_servico.atualizarCurso(this.curso).subscribe(
+      (res) => {
+
+        //Atualizar
+        this.vetor = res;
+
+        //Limpar os valores do objeto
+        this.curso.nomeCurso = '';
+        this.curso.valorCurso = 0;
+
+        //Atualiza a listagem
+        this.selecao(); 
+      }
+    )
   }
 
   //Remover

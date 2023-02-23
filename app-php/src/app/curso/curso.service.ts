@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 export class CursoService {
 
   //URL
-  url = "http://localhost/api/php/";
+  url = "http://localhost/api-angular-php/php/";
 
   //Vetor
   vetor: Curso[] = [] ;
@@ -43,8 +43,9 @@ export class CursoService {
   removerCurso(c: Curso): Observable<Curso[]>{
 
     const params = new HttpParams().set("idCurso", c.idCurso.toString());
-
-    return this.http.delete(this.url+'excluir', {params: params}).pipe(
+    
+    console.log(params);
+    return this.http.delete(this.url+'excluir', {params: c.idCurso}).pipe(
       map((res) => {
         const filtro = this.vetor.filter((curso) =>{
           return +curso['idCurso'] !== +c.idCurso;
@@ -53,5 +54,28 @@ export class CursoService {
         return this.vetor = filtro;
       })
     )
+  }
+
+  //Atualizar curso
+  atualizarCurso(c:Curso): Observable<Curso[]>{
+
+    //Executa a alteração via URL
+    return this.http.put(this.url+'alterar', {cursos: c})
+
+    //Percorrer o vetor para saber qual é o id do curso alterado
+    .pipe(map((res) => {
+      const cursoAlterado = this.vetor.find((item) =>{
+        return +item['idCurso'] === +['idCurso'];
+      });
+
+      //Altera o valor do vetor local
+      if(cursoAlterado){
+        cursoAlterado['nomeCurso'] = c['nomeCurso'];
+        cursoAlterado['valorCurso'] = c['valorCurso'];
+      }
+
+      //retorno
+      return this.vetor;
+    }))
   }
 }
