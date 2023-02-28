@@ -44,8 +44,7 @@ export class CursoService {
 
     const params = new HttpParams().set("idCurso", c.idCurso.toString());
     
-    console.log(params);
-    return this.http.delete(this.url+'excluir', {params: c.idCurso}).pipe(
+    return this.http.delete(this.url+'excluir', {params: params}).pipe(
       map((res) => {
         const filtro = this.vetor.filter((curso) =>{
           return +curso['idCurso'] !== +c.idCurso;
